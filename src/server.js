@@ -54,5 +54,5 @@ app.use((err, req, res, next) => {
 
 // Start server
 app.listen(config.port, () => {
-  logger.info(`Loyalty backend running at http://localhost:${config.port}`);
+  logger.info(`Loyalty backend running (DEV) at http://localhost:${config.port}`);
 });
