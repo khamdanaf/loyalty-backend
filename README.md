@@ -1,16 +1,29 @@
 # Loyalty Backend
 
-Backend sederhana untuk OTP WhatsApp + loyalty form.
+Backend sederhana untuk program loyalty dengan OTP dan form pendaftaran.
+Dibangun pakai:
 
-## Requirement
+- Node.js (Express)
+- PostgreSQL
+- JWT (`jsonwebtoken`)
+- Zod (validasi input)
+- Pino & pino-http (logging)
+- dotenv (konfigurasi environment)
 
-- Node.js 18+
-- PostgreSQL sudah terinstall di server
+---
 
-## Setup database (PostgreSQL)
+## 1. Requirements
 
-Masuk ke postgres sebagai user `postgres`:
+- Node.js 22.x
+- PostgreSQL 16.x (atau kompatibel)
+- Git (opsional, untuk clone & versioning)
+
+---
+
+## 2. Setup Project
+
+Clone repo (kalau di mesin baru):
 
 ```bash
-sudo -u postgres psql
-
+git clone https://github.com/khamdanaf/loyalty-backend.git
+cd loyalty-backend

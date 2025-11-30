@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development node index.js",
+    "dev:watch": "NODE_ENV=development nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -18,5 +20,8 @@
     "pino": "^10.1.0",
     "pino-http": "^11.0.0",
     "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
   }
 }
