@@ -3,6 +3,8 @@
 // Backend sederhana untuk OTP WA + loyalty form (versi pondasi)
 
 // 1. Import dan setup dasar
+require('dotenv').config();
+
 const express = require('express');
 const pool = require('./db');
 const app = express();
