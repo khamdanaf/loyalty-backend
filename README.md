@@ -2,8 +2,14 @@
 
 Backend sederhana untuk OTP WhatsApp + loyalty form.
 
-## Cara jalanin
+## Requirement
+
+- Node.js 18+
+- PostgreSQL sudah terinstall di server
+
+## Setup database (PostgreSQL)
+
+Masuk ke postgres sebagai user `postgres`:
 
 ```bash
-npm install
-npm start
+sudo -u postgres psql
