@@ -4,6 +4,7 @@
 
 // 1. Import dan setup dasar
 const express = require('express');
+const pool = require('./db');
 const app = express();
 
 // Supaya backend bisa baca JSON dari body request
@@ -110,7 +111,7 @@ app.post('/api/otp/verify', (req, res) => {
  *      "dateOfBirth": "1995-01-01"
  *    }
  */
-app.post('/api/loyalty/submit', (req, res) => {
+app.post('/api/loyalty/submit', async (req, res) => {
   const { name, phone, dateOfBirth } = req.body;
 
   if (!name || !phone) {
@@ -128,17 +129,25 @@ app.post('/api/loyalty/submit', (req, res) => {
     });
   }
 
-  // TODO:
-  // - Simpan ke database (PostgreSQL/MySQL, dst)
-  // - / atau kirim ke CRM / Shopify / BigQuery
-  console.log('Form loyalty diterima:', {
-    name,
-    phone,
-    dateOfBirth
-  });
+  try {
+    await pool.query(
+      'INSERT INTO loyalty_submissions (name, phone, date_of_birth) VALUES ($1, $2, $3)',
+      [name, phone, dateOfBirth || null]
+    );
 
-  return res.json({ status: 'ok' });
+    // Optional: setelah disimpan, hapus status verified
+    // verifiedPhones.delete(phone);
+
+    return res.json({ status: 'ok' });
+  } catch (err) {
+    console.error('Error insert loyalty:', err);
+    return res.status(500).json({
+      status: 'error',
+      message: 'Internal server error'
+    });
+  }
 });
+
 
 // 7. Jalankan server
 const PORT = 4000;
